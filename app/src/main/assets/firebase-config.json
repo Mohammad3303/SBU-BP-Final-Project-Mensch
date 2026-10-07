@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "241492958263",
+    "project_id": "pro-planner-e86d3",
+    "storage_bucket": "pro-planner-e86d3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241492958263:android:0864d5aed448aa4a9033b2",
+        "android_client_info": {
+          "package_name": "com.elyac.proplanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjy3un831ow3bdMfgGEuqmMwQF6oUU9rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
