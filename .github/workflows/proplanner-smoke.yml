@@ -1,7 +1,8 @@
 name: ProPlanner Build Probe
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ temp-proplanner-build ]
 
 permissions:
   contents: read
