@@ -1,0 +1,59 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.elyac.proplanner'
+    compileSdk 35
+
+    def ciRun = System.getenv("GITHUB_RUN_NUMBER")
+    def ciVersionCode = (ciRun != null && ciRun.isInteger()) ? (1000 + ciRun.toInteger()) : 29
+    def ciVersionName = (ciRun != null && ciRun.isInteger()) ? "1.10.9+" + ciRun : "1.10.9"
+
+    defaultConfig {
+        applicationId 'com.elyac.proplanner'
+        minSdk 24
+        targetSdk 35
+        versionCode ciVersionCode
+        versionName ciVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    // Keep native libraries uncompressed in the APK. This matches
+    // android:extractNativeLibs="false" and avoids install/runtime failures
+    // on recent Android versions when the APK is manually distributed.
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.proPlannerStable
+        }
+        release {
+            signingConfig signingConfigs.proPlannerStable
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.15.0'
+
+    // FCM is initialized at runtime from firebase-config.json so the Android
+    // build remains usable until the Firebase project config is added.
+    implementation platform('com.google.firebase:firebase-bom:34.19.0')
+    implementation 'com.google.firebase:firebase-messaging'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+}
